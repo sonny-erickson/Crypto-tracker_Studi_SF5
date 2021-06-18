@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Home{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="bg-black">
+    <!-- Navbar start -->
+        <nav class=" nav-transaction navbar navbar-expand bg-black border-bot">
+            <div class="container-fluid text-light">
+                <a class="nav-item" href="{{ path('home') }}" aria-label="Close"><i class="fas fa-times"></i></a>
+                <h2 class="flex-fill">Ajouter une transaction</h2>
+            </div>
+        </nav>
+      
+  <!-- Nav End -->
+        <div class="add-page">
+            <form>
+                <div class="form-group">
+                    <span class="icon"><i class="fas fa-search"></i></span>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <span class="icon"><i class="fas fa-search"></i></span>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <span class="icon"><i class="fas fa-search"></i></span>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <button type="submit" class="btn-form">AJOUTER</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

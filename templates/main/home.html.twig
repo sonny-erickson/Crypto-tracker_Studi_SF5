@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Home{% endtrans %}{% endblock %}
+ 
+
+{% block body %}
+{%  include 'partial/_nav.html.twig' %}
+    <div class="home bg-black">
+        <div class="home-header">
+            <h2 class="text-light">+ 2500 € </h2>
+        </div>
+        <div class="crypto-list-container">
+            <div class="crypto-list">
+                <div class="crypto-name-section ">
+                    <p class="currency"><i class="fab fa-bitcoin "></i></p>
+                    <div class="d-flex flex-row">
+                        <h3>BTC</h3> 
+                        <span>(Bitcoin)</span>
+                    </div>
+                </div>
+                <div class="crypto-arrow-section flex-fill">
+                    <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>    
+                </div>
+            </div>
+            <div class="crypto-list">
+                <div class="crypto-name-section">
+                    <p class="currency"><i class="fab fa-bitcoin"></i></p>
+                    <div class="d-flex flex-row">
+                        <h3>BTC</h3> 
+                        <span>(Bitcoin)</span>
+                    </div>
+                </div>
+                <div class="crypto-arrow-section flex-fill">
+                    <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>    
+                    <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>    
+                </div>
+            </div>
+           <div class="crypto-list">
+                <div class="crypto-name-section ">
+                    <p class="currency"><i class="fab fa-bitcoin "></i></p>
+                    <div class="d-flex flex-row">
+                        <h3>BTC</h3> 
+                        <span>(Bitcoin)</span>
+                    </div>
+                </div>
+                <div class="crypto-arrow-section flex-fill">
+                    <p class="justify-content-end"><img class="arrow" src="{{asset('assets/arrow-up.png')}}"> </p>    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

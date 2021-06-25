@@ -1,8 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Home{% endtrans %}{% endblock %}
+{% block title %}Add transaction{% endblock %}
 
 {% block body %}
+    {% for msg in app.session.flashBag.get('error') %}
+        <div class="alert alert-danger text-center" role="alert">
+            {{ msg }}
+        </div>
+    {% endfor %}
     <div class="bg-black">
     <!-- Navbar start -->
         <nav class=" nav-transaction navbar navbar-expand bg-black border-bot">
@@ -11,27 +16,34 @@
                 <h2 class="flex-fill">Ajouter une transaction</h2>
             </div>
         </nav>
-      
   <!-- Nav End -->
         <div class="add-page">
-            <form>
-                <div class="form-group">
-                    <span class="icon"><i class="fas fa-search"></i></span>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                    <span class="icon"><i class="fas fa-search"></i></span>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                    <span class="icon"><i class="fas fa-search"></i></span>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn-form">AJOUTER</button>
+            <div class="form-container">
+                {{ form_start(form) }}
+                    <div class="form-group">
+                        <div class="d-flex">
+                            <span class="icon"><i class="fas fa-search"></i></span>
+                            {{ form_widget(form.n, {'attr': { 'class': 'text-light form-control ' , }}) }}
 
-                </div>
-            </form>
+                        </div>
+
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <span class="icon"><i class="fas fa-search"></i></span>
+                        {{ form_row(form.quantity) }}
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <span class="icon"><i class="fas fa-search"></i></span>
+                        {{ form_row(form.price) }}
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn-form">Add</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
 {% endblock %}

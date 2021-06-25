@@ -1,15 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Home{% endtrans %}{% endblock %}
+{% block title %}Home{% endblock %}
  
 
 {% block body %}
 {%  include 'partial/_nav.html.twig' %}
+    {% for msg in app.session.flashBag.get('success') %}
+        <div class="alert alert-success text-center m-0" role="alert">
+            {{ msg }}
+        </div>
+    {% endfor %}
+    {% for msg in app.session.flashBag.get('error') %}
+        <div class="alert alert-danger text-center m-0" role="alert">
+            {{ msg }}
+        </div>
+    {% endfor %}
     <div class="home bg-black">
         <div class="home-header">
             <h2 class="text-light">+ 2500 € </h2>
         </div>
         <div class="crypto-list-container">
+            {% for transaction in transactions %}
+                <p>{{ transaction.n.acronym }}</p>
+            {%  endfor  %}
             <div class="crypto-list">
                 <div class="crypto-name-section ">
                     <p class="currency"><i class="fab fa-bitcoin "></i></p>

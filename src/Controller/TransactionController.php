@@ -11,9 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class TransactionController extends AbstractController
 {
     /**
-     * @Route("/add", name="add-crypto")
+     * @Route("/add/transaction", name="add-transaction")
      */
-    public function add(Request $request)
+    public function addTransaction(Request $request)
     {
         //try{
         $transaction = new Transaction();
@@ -37,7 +37,7 @@ class TransactionController extends AbstractController
     }
     
     /**
-     * @Route("/remove", name="remove-crypto")
+     * @Route("/remove/transaction", name="remove-transaction")
      */
     public function remove()
     {

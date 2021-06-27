@@ -19,47 +19,28 @@
         <div class="home-header">
             <h2 class="text-light">+ 2500 € </h2>
         </div>
-        <div class="crypto-list-container">
-            {% for transaction in transactions %}
-                <p>{{ transaction.n.acronym }}</p>
-            {%  endfor  %}
-            <div class="crypto-list">
-                <div class="crypto-name-section ">
-                    <p class="currency"><i class="fab fa-bitcoin "></i></p>
-                    <div class="d-flex flex-row">
-                        <h3>BTC</h3> 
-                        <span>(Bitcoin)</span>
+        {%  if transactions|length > 0 %}
+            <div class="crypto-list-container">
+                {% for transaction in transactions %}
+                    <div class="crypto-list">
+                        <div class="crypto-name-section ">
+                            <img class="currency" src="{{ transaction.n.image }}">
+                            <div class="d-flex flex-row">
+                                <h3>{{ transaction.n.acronym }}</h3>
+                                <span>({{ transaction.n.name }})</span>
+                            </div>
+                        </div>
+                        <div class="crypto-arrow-section flex-fill">
+                            <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
+                        </div>
                     </div>
-                </div>
-                <div class="crypto-arrow-section flex-fill">
-                    <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>    
-                </div>
+                {%  endfor  %}
             </div>
-            <div class="crypto-list">
-                <div class="crypto-name-section">
-                    <p class="currency"><i class="fab fa-bitcoin"></i></p>
-                    <div class="d-flex flex-row">
-                        <h3>BTC</h3> 
-                        <span>(Bitcoin)</span>
-                    </div>
-                </div>
-                <div class="crypto-arrow-section flex-fill">
-                    <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>    
-                    <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>    
-                </div>
+        {% else %}
+            <div class="text-center">
+                <p class="my-5 text-light">Pas de transactions</p>
+                <a class="btn-add-transac" href="{{ path('add-transaction') }}">Ajouter</a>
             </div>
-           <div class="crypto-list">
-                <div class="crypto-name-section ">
-                    <p class="currency"><i class="fab fa-bitcoin "></i></p>
-                    <div class="d-flex flex-row">
-                        <h3>BTC</h3> 
-                        <span>(Bitcoin)</span>
-                    </div>
-                </div>
-                <div class="crypto-arrow-section flex-fill">
-                    <p class="justify-content-end"><img class="arrow" src="{{asset('assets/arrow-up.png')}}"> </p>    
-                </div>
-            </div>
-        </div>
+        {% endif %}
     </div>
 {% endblock %}

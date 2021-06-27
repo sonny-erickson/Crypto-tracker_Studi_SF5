@@ -30,9 +30,14 @@ class Crypto
     private $acronym;
 
     /**
-     * @ORM\OneToMany(targetEntity=transaction::class, mappedBy="n")
+     * @ORM\OneToMany(targetEntity=Transaction::class, mappedBy="n")
      */
     private $transaction;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     public function __construct()
     {
@@ -103,5 +108,17 @@ class Crypto
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
     }
 }

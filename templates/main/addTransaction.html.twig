@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Add transaction{% endblock %}
+{% block title %}Ajouter une transaction{% endblock %}
 
 {% block body %}
     {% for msg in app.session.flashBag.get('error') %}
@@ -24,26 +24,25 @@
                         <div class="d-flex">
                             <span class="icon"><i class="fas fa-search"></i></span>
                             {{ form_widget(form.n, {'attr': { 'class': 'text-light form-control ' , }}) }}
-
                         </div>
-
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                     </div>
                     <div class="form-group">
                         <span class="icon"><i class="fas fa-search"></i></span>
-                        {{ form_row(form.quantity) }}
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        {{ form_widget(form.quantity, {'attr': { 'class': 'text-light form-control ' , }}) }}
                     </div>
                     <div class="form-group">
                         <span class="icon"><i class="fas fa-search"></i></span>
-                        {{ form_row(form.price) }}
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        {{ form_widget(form.price, {'attr': { 'class': 'text-light form-control ' , }}) }}
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn-form">Add</button>
+                        <button type="submit" class="btn-form btn-hover">Add</button>
                     </div>
                 {{ form_end(form) }}
             </div>
+            <div class="text-center mt-3">
+                <a  class="text-decoration-none text-light" href="{{path('add-crypto')}}">La crypto n'existe pas ?</a>
+            </div>
         </div>
     </div>
+
 {% endblock %}

@@ -30,7 +30,7 @@ class Crypto
     private $acronym;
 
     /**
-     * @ORM\OneToMany(targetEntity=Transaction::class, mappedBy="n")
+     * @ORM\OneToMany(targetEntity=Transaction::class, mappedBy="transac")
      */
     private $transaction;
 
@@ -95,8 +95,8 @@ class Crypto
     {
         if ($this->transaction->removeElement($transaction)) {
             // set the owning side to null (unless already changed)
-            if ($transaction->getN() === $this) {
-                $transaction->setN(null);
+            if ($transaction->getTransac() === $this) {
+                $transaction->setTransac(null);
             }
         }
 

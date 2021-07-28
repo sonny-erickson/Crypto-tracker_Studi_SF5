@@ -20,6 +20,7 @@ class TransactionController extends AbstractController
         $form = $this->createForm(TransactionType::class, $transaction );
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
+            //dump($transaction);die();
             $transaction->setDate((new \DateTime()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($transaction);

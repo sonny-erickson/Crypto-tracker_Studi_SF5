@@ -3,11 +3,6 @@
 {% block title %}Ajouter une crypto{% endblock %}
 
 {% block body %}
-    {% for msg in app.session.flashBag.get('error') %}
-        <div class="alert alert-danger text-center" role="alert">
-            {{ msg }}
-        </div>
-    {% endfor %}
     <div class="bg-black">
         <!-- Navbar start -->
         <nav class=" nav-transaction navbar navbar-expand bg-black border-bot">
@@ -17,6 +12,11 @@
             </div>
         </nav>
         <!-- Nav End -->
+        {% for msg in app.session.flashBag.get('error') %}
+            <div class="alert alert-danger text-center" role="alert">
+                {{ msg }}
+            </div>
+        {% endfor %}
         <div class="add-page">
             <div class="form-container">
                 {{ form_start(form) }}

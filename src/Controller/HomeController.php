@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class HomeController extends AbstractController
 {
     /**
@@ -15,12 +16,23 @@ class HomeController extends AbstractController
      */
     public function index(TransactionRepository $transactionRepository, ApiService $apiService): Response
     {
-        $cryptoBought = $transactionRepository->findAll();
+        $cryptosBought = $transactionRepository->findAll();
+        $cryptos=[];
+        foreach($cryptosBought as $transaction){
+            $cryptos[] = strtolower($transaction->getCrypto()->getName());
+        }
+        $cryptos = array_unique($cryptos);
+        $cryptoValues=$apiService->getCryptoPriceMoment(implode(",",$cryptos)); // ["bitcoin"=>["eur",value],"ethereum"=>["eur"=>value2],...]
+
+
         return $this->render('main/home.html.twig', [
             'controller_name' => 'HomeController',
-            'transactions' => $cryptoBought,
-            'data' => $apiService->getImage()
-
+            'transactions' => $cryptosBought,
+            'data' => $apiService->getImage(),
+            'cryptoValues'=> $cryptoValues
         ]);
+
+
+
     }
 }

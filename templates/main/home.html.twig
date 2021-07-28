@@ -17,21 +17,35 @@
     {% endfor %}
     <div class="home bg-black">
         <div class="home-header">
-            <h2 class="text-light">+ 2500 € </h2>
+            <h2 class="text-light">+ 2500 €</h2>
         </div>
         {%  if transactions|length > 0 %}
             <div class="crypto-list-container">
                 {% for transaction in transactions %}
+                    {# va chercher (API) le prix actuel en euros de la crypto #}
+                    {% set cryptoValueNow = cryptoValues[(transaction.crypto.name|lower)]['eur'] %}
+                    {% set gainLossDiff = cryptoValueNow-transaction.boughtUnitPrice %}
                     <div class="crypto-list">
                         <div class="crypto-name-section ">
-                            <img class="currency" src="{{ transaction.n.image }}">
+                            <img class="currency" src="{{ transaction.crypto.image }}">
                             <div class="d-flex flex-row">
-                                <h3>{{ transaction.n.acronym }}</h3>
-                                <span>({{ transaction.n.name }})</span>
+                                <h3>{{ transaction.crypto.acronym }}</h3>
+                                <span>({{ transaction.crypto.name }})</span>
                             </div>
                         </div>
                         <div class="crypto-arrow-section flex-fill">
-                            <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
+                           {# possiblité utilisation de switch #}
+                            {%  if gainLossDiff > 1000 %}
+                                <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
+                                <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
+                            {% elseif gainLossDiff >= 5 and gainLossDiff <= 999 %}
+                                <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
+                            {% elseif gainLossDiff < 5 %}
+                                <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-down.png')}}"> </p>
+                            {% endif %}
+                        {# <p>{{transaction.boughtUnitPrice}}</p>//
+                        <p>{{cryptoValueNow}}</p>//
+                        <p>{{gainLossDiff}}</p> #}
                         </div>
                     </div>
                 {%  endfor  %}

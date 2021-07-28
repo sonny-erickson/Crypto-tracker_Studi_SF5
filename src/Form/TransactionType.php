@@ -18,7 +18,7 @@ class TransactionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('n', EntityType::class,[
+            ->add('crypto', EntityType::class,[
                 'class' => Crypto::class,
                 "label" => false,
                 'multiple' => false,
@@ -29,23 +29,23 @@ class TransactionType extends AbstractType
 
                 ]
             ])
-            ->add('quantity', NumberType::class,
-                ['label' => false,
-                    'html5' => true,
-                    'attr' => [
-                        'step' => 0.000001,
-                        'min' => 0.000001,
-                        "placeholder" => "Quantité",
-                        "class" => "form-control"
-                    ]
-                ])
             ->add('price', NumberType::class,
                 ['label' => false,
                     'html5' => true,
                     'attr' => [
-                        'step' => 0.01,
-                        'min' => 0.01,
-                        "placeholder" => "Prix d'achat",
+                        'step' => 0.0001,
+                        'min' => 0.0001,
+                        "placeholder" => "Buy price",
+                        "class" => "form-control"
+                    ]
+                ])
+            ->add('quantity', NumberType::class,
+                ['label' => false,
+                    'html5' => true,
+                    'attr' => [
+                        'step' => 0.00001,
+                        'min' => 0.00001,
+                        "placeholder" => "Quantity",
                         "class" => "form-control"
                     ]
                 ])

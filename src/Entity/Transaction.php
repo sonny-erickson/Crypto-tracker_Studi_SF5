@@ -18,14 +18,14 @@ class Transaction
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="decimal", precision=10, scale=4)
      */
-    private $quantity;
+    private $quantity;// 0.5
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @ORM\Column(type="decimal", precision=10, scale=3)
      */
-    private $price;
+    private $price; //Unitaire ? 6000€
 
     /**
      * @ORM\Column(type="datetime")
@@ -36,23 +36,27 @@ class Transaction
      * @ORM\ManyToOne(targetEntity=Crypto::class, inversedBy="transaction")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $n;
+    private $crypto;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getQuantity(): ?int
+    public function getQuantity(): ?string
     {
         return $this->quantity;
     }
 
-    public function setQuantity(int $quantity): self
+    public function setQuantity(string $quantity): self
     {
         $this->quantity = $quantity;
 
         return $this;
+    }
+    // function ajouté 
+    public function getBoughtUnitPrice(){
+        return $this->price/$this->quantity;
     }
 
     public function getPrice(): ?string
@@ -79,15 +83,16 @@ class Transaction
         return $this;
     }
 
-    public function getN(): ?Crypto
+    public function getCrypto(): ?Crypto
     {
-        return $this->n;
+        return $this->crypto;
     }
 
-    public function setN(?Crypto $n): self
+    public function setCrypto(?Crypto $crypto): self
     {
-        $this->n = $n;
+        $this->crypto = $crypto;
 
         return $this;
     }
+
 }

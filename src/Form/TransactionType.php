@@ -26,7 +26,6 @@ class TransactionType extends AbstractType
                 "attr" => [
                     "class" => "form-control",
                     "placeholder" => "Sélectionner une crypto"
-
                 ]
             ])
             ->add('price', NumberType::class,

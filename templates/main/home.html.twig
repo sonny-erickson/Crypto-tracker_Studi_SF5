@@ -15,16 +15,19 @@
             {{ msg }}
         </div>
     {% endfor %}
+    {% set totalGainLoss = 0 %}
+
     <div class="home bg-black">
-        <div class="home-header">
-            <h2 class="text-light">+ 2500 €</h2>
+        <div class="home-header d-flex">
+            {#    Appel TwigFunction    #}
+            {% set globalGainLoss = globalGainLoss(transactions)  %}
+            <h2 class="text-light">{{ globalGainLoss > 0 ? "+ " : "- " }}{{globalGainLoss|round}} €</h2>
         </div>
         {%  if transactions|length > 0 %}
             <div class="crypto-list-container">
+            {#   Appel TwigFunction     #}
                 {% for transaction in transactions %}
-                    {# va chercher (API) le prix actuel en euros de la crypto #}
-                    {% set cryptoValueNow = cryptoValues[(transaction.crypto.name|lower)]['eur'] %}
-                    {% set gainLossDiff = cryptoValueNow-transaction.boughtUnitPrice %}
+                    {% set unitGainLoss = unitGainLoss(transaction) %}
                     <div class="crypto-list">
                         <div class="crypto-name-section ">
                             <img class="currency" src="{{ transaction.crypto.image }}">
@@ -35,17 +38,14 @@
                         </div>
                         <div class="crypto-arrow-section flex-fill">
                            {# possiblité utilisation de switch #}
-                            {%  if gainLossDiff > 1000 %}
+                            {%  if unitGainLoss > 1000 %}
                                 <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
                                 <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
-                            {% elseif gainLossDiff >= 5 and gainLossDiff <= 999 %}
+                            {% elseif unitGainLoss >= 5 and unitGainLoss <= 999 %}
                                 <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
-                            {% elseif gainLossDiff < 5 %}
+                            {% elseif unitGainLoss < 5 %}
                                 <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-down.png')}}"> </p>
                             {% endif %}
-                        {# <p>{{transaction.boughtUnitPrice}}</p>//
-                        <p>{{cryptoValueNow}}</p>//
-                        <p>{{gainLossDiff}}</p> #}
                         </div>
                     </div>
                 {%  endfor  %}
@@ -58,3 +58,78 @@
         {% endif %}
     </div>
 {% endblock %}
+
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+ 
+
+{% block body %}
+{%  include 'partial/_nav.html.twig' %}
+    {% for msg in app.session.flashBag.get('success') %}
+        <div class="alert alert-success text-center m-0" role="alert">
+            {{ msg }}
+        </div>
+    {% endfor %}
+    {% for msg in app.session.flashBag.get('error') %}
+        <div class="alert alert-danger text-center m-0" role="alert">
+            {{ msg }}
+        </div>
+    {% endfor %}
+    {% set totalGainLoss = 0 %}
+    {% set data = [] %}
+    {%  if transactions|length > 0 %}
+                {% for transaction in transactions %}
+                    {# va chercher (API) le prix actuel en euros de la crypto #}
+                    {# {% set cryptoValueNow = cryptoValues[(transaction.crypto.name|lower)]['eur'] %}
+                    {% set gainLossDiff = cryptoValueNow-transaction.boughtUnitPrice %}
+                    {% set totalGainLoss = totalGainLoss + gainLossDiff %}
+                    {% set data = data|merge([{
+                                                "gainLossDiff":gainLossDiff,
+                                                "image":transaction.crypto.image,
+                                                "accro":transaction.crypto.acronym,
+                                                "name":transaction.crypto.name
+                    }]) %}
+                {%  endfor  %}
+        {% endif %}   
+    <div class="home bg-black">
+        <div class="home-header">
+            <h2 class="text-light">{{totalGainLoss}} €</h2>
+        </div>
+        {%  if transactions|length > 0 %}
+            <div class="crypto-list-container">
+                {% for transaction in data %} #}
+                    {# va chercher (API) le prix actuel en euros de la crypto #}
+                    {# <div class="crypto-list">
+                        <div class="crypto-name-section ">
+                            <img class="currency" src="{{ transaction["image"] }}">
+                            <div class="d-flex flex-row">
+                                <h3>{{ transaction["accro"] }}</h3>
+                                <span>({{ transaction["name"] }})</span>
+                            </div>
+                        </div>
+                        <div class="crypto-arrow-section flex-fill">
+                           possiblité utilisation de switch
+                            {%  if transaction["gainLossDiff"] > 1000 %}
+                                <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
+                                <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
+                            {% elseif transaction["gainLossDiff"] >= 5 and transaction["gainLossDiff"] <= 999 %}
+                                <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
+                            {% elseif transaction["gainLossDiff"] < 5 %}
+                                <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-down.png')}}"> </p>
+                            {% endif %}
+                        {# <p>{{transaction.boughtUnitPrice}}</p>//
+                        <p>{{cryptoValueNow}}</p>//
+                        <p>{{gainLossDiff}}</p> #}
+                        {# </div>
+                    </div>
+                {%  endfor  %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <p class="my-5 text-light">Pas de transactions</p>
+                <a class="btn-add-transac" href="{{ path('add-transaction') }}">Ajouter</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %} #}

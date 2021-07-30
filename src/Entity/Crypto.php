@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Controller\ApiController;
 use App\Repository\CryptoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -48,7 +49,12 @@ class Crypto
     {
         return $this->id;
     }
-
+    // // function ajouté 
+     public function getCurrentPrice()
+     {
+         $api = new ApiController;
+         return ($api->getCryptoPriceMoment($this->getName()));
+     }
     public function getName(): ?string
     {
         return $this->name;

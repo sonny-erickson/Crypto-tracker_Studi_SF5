@@ -54,10 +54,6 @@ class Transaction
 
         return $this;
     }
-    // function ajouté 
-    public function getBoughtUnitPrice(){
-        return $this->price/$this->quantity;
-    }
 
     public function getPrice(): ?string
     {

@@ -4,7 +4,7 @@ namespace App\Service;
 use App\Entity\Historical;
 use Doctrine\ORM\EntityManagerInterface;
 
-class SaveBalance
+class SaveBalanceService
 {
     /** @var CryptoService $cryptoService */
     private $cryptoService;
@@ -29,6 +29,7 @@ class SaveBalance
         $globalGainLoss = $this->cryptoService->globalBalance($transactions);
         $history = new Historical();
         $history->setBalance($globalGainLoss);
+        $history->setDate(new \DateTime());
         $this->em->persist($history);
         $this->em->flush();
     }

@@ -49,12 +49,7 @@ class Crypto
     {
         return $this->id;
     }
-    // // function ajouté 
-     public function getCurrentPrice()
-     {
-         $api = new ApiController;
-         return ($api->getCryptoPriceMoment($this->getName()));
-     }
+
     public function getName(): ?string
     {
         return $this->name;

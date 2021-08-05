@@ -15,19 +15,19 @@
             {{ msg }}
         </div>
     {% endfor %}
-    {% set totalGainLoss = 0 %}
+{#    {% set totalGainLoss = 0 %}#}
 
     <div class="home bg-black">
         <div class="home-header d-flex">
             {#    Appel TwigFunction    #}
-            {% set globalGainLoss = globalGainLoss(transactions)  %}
-            <h2 class="text-light">{{ globalGainLoss > 0 ? "+ " : "- " }}{{globalGainLoss|round}} €</h2>
+            {% set globalBalance = cryptoService.globalBalance(transactions)  %}
+            <h2 class="text-light">{{ globalBalance > 0 ? "+ " : "- " }}{{globalBalance|round}} €</h2>
         </div>
         {%  if transactions|length > 0 %}
             <div class="crypto-list-container">
             {#   Appel TwigFunction     #}
                 {% for transaction in transactions %}
-                    {% set unitGainLoss = unitGainLoss(transaction) %}
+                    {% set unitBalance = cryptoService.unitBalance(transaction) %}
                     <div class="crypto-list">
                         <div class="crypto-name-section ">
                             <img class="currency" src="{{ transaction.crypto.image }}">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="crypto-arrow-section flex-fill">
                            {# possiblité utilisation de switch #}
-                            {%  if unitGainLoss > 1000 %}
+                            {%  if unitBalance > 1000 %}
                                 <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
                                 <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
                             {% elseif unitGainLoss >= 5 and unitGainLoss <= 999 %}

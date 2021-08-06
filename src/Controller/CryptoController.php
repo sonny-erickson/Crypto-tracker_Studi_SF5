@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Crypto;
 use App\Form\CryptoType;
 use App\Repository\CryptoRepository;
+use App\Service\ApiService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,7 +15,7 @@ class CryptoController extends AbstractController
     /**
      * @Route("/add/crypto", name="add-crypto")
      */
-    public function addCrypto(Request $request,ApiController $apiController, CryptoRepository $cryptoRepository)
+    public function addCrypto(Request $request,ApiService $apiService, CryptoRepository $cryptoRepository)
     {
         try{
         $crypto = new Crypto();
@@ -26,7 +27,7 @@ class CryptoController extends AbstractController
                 $this->addFlash('error','Crypto already exist');
                 return $this->redirectToRoute("add-crypto");
             }
-            $callApi = $apiController->getCrypto($cryptoToAdd);
+            $callApi = $apiService->getCrypto($cryptoToAdd);
             $getImage = $callApi["image"];
             $getImageSmall = $getImage["small"];
             $crypto->setName($callApi["name"]);

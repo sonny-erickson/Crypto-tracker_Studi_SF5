@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Graphique journalier{% endblock %}
+
+{% block body %}
+    <div class="bg-black">
+        <!-- Navbar start -->
+        <nav class=" nav-transaction navbar navbar-expand bg-black border-bot">
+            <div class="container-fluid text-light">
+                <a class="nav-item" href="{{ path('home') }}" aria-label="Close"><i class="fas fa-times"></i></a>
+                <h2 class="flex-fill">Vos gains</h2>
+            </div>
+        </nav>
+    </div>
+    <div class="home bg-black graph">
+        <div class="pt-5">
+            {{ render_chart(chart) }}
+        </div>
+    </div>
+
+{% endblock %}

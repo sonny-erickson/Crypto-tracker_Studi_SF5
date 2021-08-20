@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Problème Serveur !{% endblock %}
+
+{% block body %}
+
+    <div class="containerError">
+        <h2>Mince ....</h2>
+        <h1>500</h1>
+        <p class="m-0">Problème interne..</p>
+        <a href="{{ path('home') }}" class="h5 text-muted"><p>Retour</p></a>
+    </div>
+{% endblock %}

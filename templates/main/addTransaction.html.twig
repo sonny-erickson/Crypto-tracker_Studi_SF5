@@ -20,22 +20,28 @@
         <div class="add-page">
             <div class="form-container">
                 {{ form_start(form) }}
-                    <div class="form-group">
-                        <div class="d-flex">
-                            <span class="icon"><i class="fas fa-search"></i></span>
-                            {{ form_widget(form.crypto, {'attr': { 'class': 'text-light form-control ' , }}) }}
-                        </div>
+                <div class="form-group gy-2 gx-3 align-items-center">
+                    <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><img class="arrow" src="{{asset('assets/images/search.png')}}"></span>
+                        {{ form_widget(form.crypto, {'attr': { 'class': 'text-light form-control ' , }}) }}
                     </div>
-                    <div class="form-group">
-                        <span class="icon"><i class="fas fa-search"></i></span>
-                        {{ form_widget(form.quantity, {'attr': { 'class': 'text-light form-control ' , }}) }}
+                </div>
+                <div class="form-group gy-2 gx-3 align-items-center">
+                    <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><img class="arrow" src="{{asset('assets/images/quantity.png')}}"></span>
+                            {{ form_widget(form.quantity, {'attr': { 'class': 'text-light form-control ' , }}) }}
+
                     </div>
-                    <div class="form-group">
-                        <span class="icon"><i class="fas fa-search"></i></span>
+                </div>
+                <div class="form-group gy-2 gx-3 align-items-center">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1"><img class="arrow" src="{{asset('assets/images/euro.png')}}"></span>
                         {{ form_widget(form.price, {'attr': { 'class': 'text-light form-control ' , }}) }}
                     </div>
+                </div>
+                   
                     <div class="text-center">
-                        <button type="submit" class="btn-form btn-hover">Add</button>
+                        <button type="submit" class="btn-form btn-hover">Ajouter</button>
                     </div>
                 {{ form_end(form) }}
             </div>

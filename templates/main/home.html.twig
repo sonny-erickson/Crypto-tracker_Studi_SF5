@@ -21,16 +21,17 @@
         <div class="home-header d-flex">
             {#    Appel TwigFunction    #}
             {% set globalBalance = cryptoService.globalBalance(transactions)  %}
-            <h2 class="text-light">{{ globalBalance > 0 ? "+ " : "- " }}{{globalBalance|round}} €</h2>
+            <a class="text-decoration-none" href={{path("graph")}}><h2 class="text-light">{{ globalBalance > 0 ? "+ " : "- " }}{{globalBalance|round}} €</h2></a>
         </div>
         {%  if transactions|length > 0 %}
             <div class="crypto-list-container">
-            {#   Appel TwigFunction     #}
                 {% for transaction in transactions %}
                     {% set unitBalance = cryptoService.unitBalance(transaction) %}
                     <div class="crypto-list">
                         <div class="crypto-name-section ">
+                        <div class="h-100">
                             <img class="currency" src="{{ transaction.crypto.image }}">
+                        </div>
                             <div class="d-flex flex-row">
                                 <h3>{{ transaction.crypto.acronym }}</h3>
                                 <span>({{ transaction.crypto.name }})</span>
@@ -39,12 +40,12 @@
                         <div class="crypto-arrow-section flex-fill">
                            {# possiblité utilisation de switch #}
                             {%  if unitBalance > 1000 %}
+                                <p class="justify-content-end"><img class="arrow " src="{{asset('assets/images/arrow-up.png')}}"> </p>
                                 <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
+                            {% elseif unitBalance >= 5 and unitBalance <= 999 %}
                                 <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
-                            {% elseif unitGainLoss >= 5 and unitGainLoss <= 999 %}
-                                <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-up.png')}}"> </p>
-                            {% elseif unitGainLoss < 5 %}
-                                <p class="justify-content-end"><img class="arrow" src="{{asset('assets/images/arrow-down.png')}}"> </p>
+                            {% elseif unitBalance < 5 %}
+                                <p class="justify-content-end"><img class="arrow rotate" src="{{asset('assets/images/arrow-up.png')}}"> </p>
                             {% endif %}
                         </div>
                     </div>

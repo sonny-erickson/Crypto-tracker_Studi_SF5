@@ -10,23 +10,19 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
-
-
-
 class TransactionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('crypto', EntityType::class,[
+                "placeholder" => "Sélectionner une crypto",
                 'class' => Crypto::class,
                 "label" => false,
                 'multiple' => false,
+                'choice_label' => 'name',
                 "required"  => true,
-                "attr" => [
-                    "class" => "form-control",
-                    "placeholder" => "Sélectionner une crypto"
-                ]
+                "data" => $options['data']->getCrypto(),
             ])
             ->add('price', NumberType::class,
                 ['label' => false,
@@ -34,8 +30,8 @@ class TransactionType extends AbstractType
                     'attr' => [
                         'step' => 0.0001,
                         'min' => 0.0001,
-                        "placeholder" => "Buy price",
-                        "class" => "form-control"
+                        "placeholder" => "Prix d'achat",
+                        "class" => "form-control, color-light"
                     ]
                 ])
             ->add('quantity', NumberType::class,
@@ -44,7 +40,7 @@ class TransactionType extends AbstractType
                     'attr' => [
                         'step' => 0.00001,
                         'min' => 0.00001,
-                        "placeholder" => "Quantity",
+                        "placeholder" => "Quantité",
                         "class" => "form-control"
                     ]
                 ])

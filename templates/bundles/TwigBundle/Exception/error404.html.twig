@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %ERREUR 404{% endblock %}
+
+{% block body %}
+
+    <div class="containerError">
+      <h2>Oops! Page not found.</h2>
+      <h1>404</h1>
+      <p class="m-0">Il n'y a rien par ici</p>
+      <a href="{{ path('home') }}" class="h5 text-muted"><p>Retour</p></a>
+    </div>
+
+{% endblock %}

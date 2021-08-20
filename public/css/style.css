@@ -40,6 +40,8 @@ h2{
 /*NAV Home*/
 .navbar{
     height: 60px;
+    border-bottom: 1px solid rgba(239, 239, 239,0.6);
+
 }
 .nav-item{
     color: rgb(239, 239, 239);
@@ -61,11 +63,10 @@ h2{
     font-size: 19px;
     margin-left: 20px;
     font-family: 'Akzidenz-Grotesk BQ';
-  
 }
 /*HOME PAGE*/
 .home-header{
-    height: 100px;
+    height: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,8 +89,7 @@ h2{
     display: flex;
     width: 70%;
     padding-top: 10px;
-    border-bottom: 1px solid rgba(239, 239, 239,0.2);
-    align-items: baseline;
+    border-bottom: 1px solid rgba(239, 239, 239,0.6);
 }
 .crypto-list h3 {
     font-size: 17px;
@@ -111,14 +111,15 @@ h2{
     margin-right: 15px;
 }
 .arrow{
-    height: 15px;
+    height: 12px;
+}
+.rotate{
+    transform: rotate(155deg);
 }
 .currency{
     height: auto;
-    width: 35px;
+    width: 20px;
     padding: 0;
-    display: flex;
-    align-items: center;
     margin-right: 7px;
 }
 .btn-add-transac{
@@ -160,6 +161,9 @@ h2{
     margin-top: 30px;
     margin-bottom: 30px;
 }
+.input-group-text{
+    background-color: rgb(16,15,15)!important;
+}
 .btn-form{
     /* background-color: grey; */
     font-size: 18px;
@@ -190,6 +194,37 @@ canvas{
     height: auto!important;
     margin: auto!important;
     width: 80%!important;
+}
+/*#################################*/
+/*          Error PAGE          */
+/*#################################*/
+.containerError {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #343434;
+}
+.containerError h1 {
+    font-size: 160px;
+    margin: 0;
+    font-weight: 900;
+    letter-spacing: 20px;
+}
+.containerError a {
+    text-decoration: none;
+    background: #1fc36c;
+    color: #ffffff;
+    padding: 12px 24px;
+    display: inline-block;
+    border-radius: 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.4s;
+}
+.containerError a:hover {
+    background: #1fc36e;
 }
 /*#################################*/
 /*    Media Queries*    /
@@ -223,6 +258,7 @@ canvas{
         height: auto;
         width: 35px;
         margin-right: 15px;
+        margin-bottom: 0.5rem;
     }
     .crypto-list h3 {
         font-size: 27px;
@@ -267,8 +303,9 @@ canvas{
         font-size: 42px;
     }
     .currency {
-        font-size: 30px;
         margin-right: 15px;
+        margin-bottom: 0.5rem;
+        width: 33px;
     }
     .crypto-list h3 {
         font-size: 30px;

@@ -44,7 +44,9 @@
         "symfony/webpack-encore-bundle": "^1.12",
         "symfony/yaml": "5.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "doctrine/doctrine-fixtures-bundle": "^3.4"
+
     },
     "require-dev": {
         "dama/doctrine-test-bundle": "^6.6",

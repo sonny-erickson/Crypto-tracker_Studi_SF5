@@ -21,12 +21,12 @@
             <div class="form-container">
                 {{ form_start(form) }}
                 <div class="form-group">
-                    <div class="d-flex">
-                        <span class="icon"><i class="fas fa-search"></i></span>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1"><img class="arrow" src="{{asset('assets/images/search.png')}}"></span>
                         {{ form_widget(form.name, {'attr': { 'class': 'text-light form-control ' , }}) }}
                     </div>
                 </div>
-                <div class="text-center">
+                <div class="text-center btn-padding-15">
                     <button type="submit" class="btn-form btn-hover">Add</button>
                 </div>
                 {{ form_end(form) }}

@@ -19,6 +19,9 @@
         url('../assets/fonts/Roboto-Bold-webfont.woff') format('woff');
    }
 /*GLOBAL*/
+html {
+    height: 100%;
+}
 body{
     font-family: "Roboto-Regular", sans-serif;
 }
@@ -164,8 +167,13 @@ h2{
 .input-group-text{
     background-color: rgb(16,15,15)!important;
 }
+.btn-padding-5{
+    padding-top: 5rem;
+}
+.btn-padding-15{
+    padding-top: 15rem;
+}
 .btn-form{
-    /* background-color: grey; */
     font-size: 18px;
     font-family: "Roboto-bold";
     border: 2px solid black;

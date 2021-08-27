@@ -79,12 +79,12 @@ class Transaction
         return $this;
     }
 
-    public function getCrypto(): ?Crypto
+    public function getCrypto()
     {
         return $this->crypto;
     }
 
-    public function setCrypto(?Crypto $crypto): self
+    public function setCrypto( $crypto): self
     {
         $this->crypto = $crypto;
 

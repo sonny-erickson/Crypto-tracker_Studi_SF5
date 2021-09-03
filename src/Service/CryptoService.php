@@ -42,6 +42,6 @@ class CryptoService
      */
     public function unitBalance($transaction)
     {
-        return  $transaction->getPrice() - $this->apiService->getCurrentPrice($transaction->getCrypto()->getName()) * $transaction->getQuantity();
+        return  $this->apiService->getCurrentPrice($transaction->getCrypto()->getName()) * $transaction->getQuantity() - $transaction->getPrice() ;
     }
 }

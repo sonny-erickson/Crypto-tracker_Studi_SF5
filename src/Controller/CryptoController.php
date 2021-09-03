@@ -28,19 +28,21 @@ class CryptoController extends AbstractController
                 return $this->redirectToRoute("add-crypto");
             }
             $callApi = $apiService->getCrypto($cryptoToAdd);
-            $getImage = $callApi["image"];
-            $getImageSmall = $getImage["small"];
-            $crypto->setName($callApi["name"]);
-            $crypto->setAcronym($callApi["symbol"]);
+            $getImage = $callApi->image;
+            //dump($getImage);die;
+
+            $getImageSmall = $getImage->small;
+            $crypto->setName($callApi->name);
+            $crypto->setAcronym($callApi->symbol);
             $crypto->setImage($getImageSmall);
             $em = $this->getDoctrine()->getManager();
             $em->persist($crypto);
             $em->flush();
-            $this->addFlash('success','Crypto added');
+            $this->addFlash('success','Crypto ajouté');
             return $this->redirectToRoute('home');
         }
         }catch (\Exception $e){
-        $this->addFlash('error','Retry with lowercase, or retry later');
+        $this->addFlash('error','Pas la bonne orthographe, désolé');
         return $this->redirectToRoute("add-crypto");
         }
         return $this->render('main/addCrypto.html.twig',[

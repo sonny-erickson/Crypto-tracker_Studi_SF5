@@ -21,7 +21,7 @@
         <div class="home-header d-flex">
             {#    Appel TwigFunction    #}
             {% set globalBalance = cryptoService.globalBalance(transactions)  %}
-            <a class="text-decoration-none" href={{path("graph")}}><h2 class="text-light">{{ globalBalance > 0 ? "+ " : "- " }}{{globalBalance|round}} €</h2></a>
+            <a class="text-decoration-none" href={{path("graph")}}><h2 class="text-light">{{ globalBalance > 0 ? "+ " : "" }}{{globalBalance|round}} €</h2></a>
         </div>
         {%  if transactions|length > 0 %}
             <div class="crypto-list-container">

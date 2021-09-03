@@ -24,7 +24,7 @@ class CryptoController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $cryptoToAdd = $form['name']->getData();
             if($cryptoRepository->findOneBy(["name" => $cryptoToAdd])){
-                $this->addFlash('error','Crypto already exist');
+                $this->addFlash('error','Crypto existe déjà');
                 return $this->redirectToRoute("add-crypto");
             }
             $callApi = $apiService->getCrypto($cryptoToAdd);

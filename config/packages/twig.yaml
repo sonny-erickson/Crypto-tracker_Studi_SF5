@@ -2,6 +2,7 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
         cryptoService: '@App\Service\CryptoService'
+        apiService: '@App\Service\ApiService'
 
 when@test:
     twig:

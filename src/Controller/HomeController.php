@@ -28,8 +28,17 @@ class HomeController extends AbstractController
         return $this->render('main/home.html.twig', [
             'transactions' => $transactions
         ]);
-
-
-
+    }
+    /**
+     * @Route("/cron", name="cron")
+     */
+    public function SaveDaily(SaveBalanceService $saveBalance, TransactionRepository $transactionRepository): Response
+    {
+        $transactions = $transactionRepository->findAll();
+        //dump($transactions);die;
+        $saveB=$saveBalance->globalBalance($transactions);
+        return $this->render('main/home.html.twig', [
+            'transactions' => $transactions
+        ]);
     }
 }
